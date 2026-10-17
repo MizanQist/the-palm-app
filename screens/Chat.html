@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Front desk chat · The Palm</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C1B19}a:hover{color:#5E4C3C}
+input:focus{outline:2px solid #1C1B19;outline-offset:1px}
+</style>
+</head>
+<body>
+<div id="dc"></div>
+<template id="tpl">
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3EFE8; font-family: 'Jost', system-ui, sans-serif; color: #1C1B19; display: flex; flex-direction: column">
+<div style="padding: 54px 16px 12px; background: #FBF9F5; border-bottom: 1px solid #E6E0D6; display: flex; align-items: center; gap: 12px">
+<a href="Stay.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1C1B19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<img src="../assets/logo.jpg" alt="" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover">
+<div style="flex: 1"><div style="font-size: 16px; font-weight: 600">Front desk</div><div style="font-size: 13px; color: #2F5D46">Online · replies in about 5 min</div></div>
+<a href="#call" aria-label="Call the front desk" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #DDD6CB; display: flex; align-items: center; justify-content: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1C1B19" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"></path></svg></a>
+</div>
+<div style="flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+<div style="align-self: center; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #625B52">Sat 24 Oct</div>
+<div style="align-self: flex-start; max-width: 78%; padding: 11px 14px; border-radius: 18px 18px 18px 6px; background: #FFFFFF; border: 1px solid #E6E0D6; font-size: 15px; line-height: 1.4">Good afternoon, Amina. Welcome to The Palm. Apartment 2B is ready for you.<div style="margin-top: 4px; font-size: 12px; color: #625B52">2:04 pm · Halima, front desk</div></div>
+<div style="align-self: flex-end; max-width: 78%; padding: 11px 14px; border-radius: 18px 18px 6px 18px; background: #1C1B19; color: #F3EFE8; font-size: 15px; line-height: 1.4">Thank you! Could we get two extra towels?<div style="margin-top: 4px; font-size: 12px; color: #CFC7BA">6:12 pm</div></div>
+<div style="align-self: flex-start; width: 78%; box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: #EDE6DA; display: flex; align-items: center; gap: 12px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C1B19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v5H4zM6 11v9h12v-9M10 15h4"></path></svg>
+<div style="flex: 1"><div style="font-size: 14px; font-weight: 600">Towels and linen</div><div style="font-size: 13px; color: #3D3832">On the way · about 15 min</div></div>
+</div>
+<div style="align-self: flex-start; max-width: 78%; padding: 11px 14px; border-radius: 18px 18px 18px 6px; background: #FFFFFF; border: 1px solid #E6E0D6; font-size: 15px; line-height: 1.4">Of course. Housekeeping is bringing them up now.<div style="margin-top: 4px; font-size: 12px; color: #625B52">6:14 pm</div></div>
+<div style="align-self: flex-end; max-width: 78%; padding: 11px 14px; border-radius: 18px 18px 6px 18px; background: #1C1B19; color: #F3EFE8; font-size: 15px; line-height: 1.4">Perfect. Is the pool open this evening?<div style="margin-top: 4px; font-size: 12px; color: #CFC7BA">6:15 pm</div></div>
+<div style="align-self: flex-start; max-width: 78%; padding: 11px 14px; border-radius: 18px 18px 18px 6px; background: #FFFFFF; border: 1px solid #E6E0D6; font-size: 15px; line-height: 1.4">Yes, until [POOL CLOSING TIME]. Fresh towels are by the loungers.<div style="margin-top: 4px; font-size: 12px; color: #625B52">6:16 pm</div></div>
+</div>
+<div style="padding: 10px 16px 30px; background: #FBF9F5; border-top: 1px solid #E6E0D6; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 8px">
+<button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #DDD6CB; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #1C1B19">Cleaning</button>
+<button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #DDD6CB; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #1C1B19">Late check-out</button>
+<button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #DDD6CB; background: #FFFFFF; font-family: inherit; font-size: 13px; color: #1C1B19">Book a ride</button>
+</div>
+<div style="display: flex; gap: 10px">
+<label for="msg" style="position: absolute; left: -9999px">Message</label>
+<input id="msg" placeholder="Write a message" style="flex: 1; min-width: 0; height: 48px; padding: 0 16px; border-radius: 24px; border: 1px solid #DDD6CB; background: #FFFFFF; font-family: inherit; font-size: 15px; color: #1C1B19">
+<button aria-label="Send" style="width: 48px; height: 48px; border-radius: 24px; border: 0; background: #1C1B19; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F3EFE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</div>
+</div>
+</template>
+<script src="runtime.js"></script>
+<script>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+
+mount(Component);
+</script>
+</body>
+</html>

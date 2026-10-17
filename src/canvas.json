@@ -1,0 +1,182 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Apartment.dc.html": {
+      "h": 1600,
+      "radius": 44,
+      "title": "05 Apartment",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "Apartments.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "radius": 44,
+      "title": "04 Apartments",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "Chat.dc.html": {
+      "h": 844,
+      "radius": 44,
+      "title": "12 Front desk chat",
+      "w": 390,
+      "x": 940,
+      "y": 2000
+    },
+    "Confirmed.dc.html": {
+      "h": 844,
+      "radius": 44,
+      "title": "09 Reserved",
+      "w": 390,
+      "x": 3760,
+      "y": 0
+    },
+    "Dates.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 44,
+      "title": "06 Choose dates",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "Desk.dc.html": {
+      "expand": "fill",
+      "h": 980,
+      "title": "14 Front desk dashboard (owner and staff)",
+      "w": 1440,
+      "x": 0,
+      "y": 3400
+    },
+    "Home.dc.html": {
+      "h": 1230,
+      "radius": 44,
+      "title": "03 Home",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "radius": 44,
+      "title": "01 Welcome",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Me.dc.html": {
+      "h": 900,
+      "radius": 44,
+      "title": "13 Profile",
+      "w": 390,
+      "x": 1410,
+      "y": 2000
+    },
+    "Pay.dc.html": {
+      "h": 960,
+      "is_interactive": true,
+      "radius": 44,
+      "title": "08 Payment",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "Review.dc.html": {
+      "h": 1160,
+      "radius": 44,
+      "title": "07 Review and guest details",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "Stay.dc.html": {
+      "h": 1000,
+      "radius": 44,
+      "title": "11 During the stay",
+      "w": 390,
+      "x": 470,
+      "y": 2000
+    },
+    "Trips.dc.html": {
+      "h": 844,
+      "radius": 44,
+      "title": "10 My stays",
+      "w": 390,
+      "x": 0,
+      "y": 2000
+    },
+    "Verify.dc.html": {
+      "h": 844,
+      "radius": 44,
+      "title": "02 Sign in",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-17T13:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "ph": {
+      "fill": "orange",
+      "maxH": 760,
+      "size": 24,
+      "text": "PLACEHOLDERS, to confirm with the client:\n\n• Apartment types and how many of each (shown: one-, two- and three-bedroom, 12 units)\n• Nightly rates (₦120k / ₦200k / ₦300k are examples)\n• Refundable caution deposit (₦50,000 shown)\n• Street address and area\n• Check-in 2 pm / check-out 12 noon\n• Amenities beyond what the photos show (Wi-Fi, power, parking)\n• Bank name and account for transfers\n• House rules and cancellation policy\n\nInterior photos are placeholder renders until the client's own photos are chosen. Building, pool, terrace and gate photos are the client's.",
+      "w": 440,
+      "x": -560,
+      "y": 0
+    },
+    "t1": {
+      "kind": "title1",
+      "maxW": 4150,
+      "text": "Find and reserve an apartment",
+      "w": 240,
+      "x": 0,
+      "y": -270
+    },
+    "t2": {
+      "kind": "title1",
+      "maxW": 1800,
+      "text": "During the stay",
+      "w": 240,
+      "x": 0,
+      "y": 1730
+    },
+    "t3": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "Front desk (the owner's side)",
+      "w": 240,
+      "x": 0,
+      "y": 3130
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Verify.dc.html",
+    "Home.dc.html",
+    "Apartments.dc.html",
+    "Apartment.dc.html",
+    "Dates.dc.html",
+    "Review.dc.html",
+    "Pay.dc.html",
+    "Confirmed.dc.html",
+    "Trips.dc.html",
+    "Stay.dc.html",
+    "Chat.dc.html",
+    "Me.dc.html",
+    "Desk.dc.html"
+  ],
+  "pages": [],
+  "title": "The Palm App"
+}

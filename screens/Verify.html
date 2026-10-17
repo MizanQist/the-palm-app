@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign in with your phone · The Palm</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C1B19}a:hover{color:#5E4C3C}
+input:focus{outline:2px solid #1C1B19;outline-offset:2px}
+</style>
+</head>
+<body>
+<div id="dc"></div>
+<template id="tpl">
+
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 60px 24px 40px; display: flex; flex-direction: column; background: #F3EFE8; font-family: 'Jost', system-ui, sans-serif; color: #1C1B19">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="Main.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #DDD6CB; display: flex; align-items: center; justify-content: center; background: #FBF9F5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1C1B19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<img src="../assets/logo.jpg" alt="The Palm" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover">
+<div style="width: 44px"></div>
+</div>
+<h1 style="margin: 36px 0 10px; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 40px; line-height: 1.02">Sign in with<br>your phone</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #625B52">We send a six-digit code by SMS. The front desk uses this number to reach you about your stay.</p>
+<label for="phone" style="margin-top: 32px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #625B52">Phone number</label>
+<div style="margin-top: 8px; display: flex; gap: 10px">
+<div style="height: 56px; padding: 0 14px; border-radius: 14px; border: 1px solid #DDD6CB; background: #FBF9F5; display: flex; align-items: center; gap: 6px; font-size: 16px">+234 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#625B52" stroke-width="1.8" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+<input id="phone" type="tel" value="803 412 7756" style="flex: 1; min-width: 0; height: 56px; box-sizing: border-box; padding: 0 16px; border-radius: 14px; border: 1px solid #1C1B19; background: #FBF9F5; font-family: inherit; font-size: 17px; color: #1C1B19">
+</div>
+<div style="margin-top: 30px; display: flex; align-items: baseline; justify-content: space-between">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #625B52">Code sent to 0803 412 7756</div>
+</div>
+<div style="margin-top: 10px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<input aria-label="Digit 1" value="4" style="height: 58px; text-align: center; border-radius: 12px; border: 1px solid #DDD6CB; background: #FBF9F5; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+<input aria-label="Digit 2" value="1" style="height: 58px; text-align: center; border-radius: 12px; border: 1px solid #DDD6CB; background: #FBF9F5; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+<input aria-label="Digit 3" value="9" style="height: 58px; text-align: center; border-radius: 12px; border: 1px solid #DDD6CB; background: #FBF9F5; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+<input aria-label="Digit 4" value="" style="height: 58px; text-align: center; border-radius: 12px; border: 1.5px solid #1C1B19; background: #FFFFFF; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+<input aria-label="Digit 5" value="" style="height: 58px; text-align: center; border-radius: 12px; border: 1px solid #DDD6CB; background: #FBF9F5; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+<input aria-label="Digit 6" value="" style="height: 58px; text-align: center; border-radius: 12px; border: 1px solid #DDD6CB; background: #FBF9F5; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; color: #1C1B19; min-width: 0">
+</div>
+<div style="margin-top: 14px; font-size: 14px; color: #625B52">Didn't get it? Resend in 0:42</div>
+<div style="flex: 1"></div>
+<a href="Home.html" style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 27px; background: #1C1B19; color: #F3EFE8; font-size: 16px; font-weight: 500; text-decoration: none">Continue</a>
+<p style="margin: 16px 0 0; text-align: center; font-size: 13px; line-height: 1.5; color: #625B52">By continuing you agree to the house rules and privacy policy.</p>
+</div>
+</template>
+<script src="runtime.js"></script>
+<script>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+
+mount(Component);
+</script>
+</body>
+</html>
