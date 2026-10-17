@@ -64,60 +64,75 @@ mount(Component);
 
 
 def board(canvas):
+    """index.html: every board and note placed at its canvas position on a pan/zoom stage."""
     boards, notes = canvas['boards'], canvas['notes']
-    sections = []
-    for key in ('t1', 't2', 't3'):
-        top = notes[key]['y'] + 270
-        nxt = sorted(n['y'] + 270 for n in notes.values() if n.get('kind') == 'title1' and n['y'] + 270 > top)
-        bottom = nxt[0] if nxt else 10 ** 9
-        names = [n for n in canvas['order'] if top <= boards[n]['y'] < bottom]
-        cards = []
-        for n in names:
-            b, stem = boards[n], n.replace('.dc.html', '')
-            wide = b['w'] > 390
-            cls = 'screen wide' if wide else 'screen'
-            cards.append(f'''<figure class="{cls}">
-<figcaption><a href="screens/{stem}.html">{html.escape(b["title"])}</a>{' <span>interactive</span>' if b.get('is_interactive') else ''}</figcaption>
-<iframe src="screens/{stem}.html" title="{html.escape(b["title"])}" loading="lazy" style="height:{b["h"]}px"></iframe>
-</figure>''')
-        sections.append(f'<section><h2>{html.escape(notes[key]["text"])}</h2><div class="row">{"".join(cards)}</div></section>')
-    note = html.escape(notes['ph']['text']).replace('\n', '<br>')
+    pad = 80
+    xs = [b['x'] for b in boards.values()] + [n['x'] for n in notes.values()]
+    ys = [b['y'] for b in boards.values()] + [n['y'] for n in notes.values()]
+    ox, oy = min(xs) - pad, min(ys) - pad
+    width = max([b['x'] + b['w'] for b in boards.values()] + [n['x'] + n.get('w', 0) for n in notes.values()]) - ox + pad
+    height = max(b['y'] + b['h'] for b in boards.values()) - oy + pad
+    items = []
+    for key, n in notes.items():
+        pos = f'left:{n["x"] - ox}px;top:{n["y"] - oy}px'
+        if n.get('kind') == 'title1':
+            items.append(f'<h2 class="title" style="{pos}">{html.escape(n["text"])}</h2>')
+        else:
+            text = html.escape(n['text']).replace('\n', '<br>')
+            items.append(f'<div class="note" style="{pos};width:{n["w"]}px;font-size:{n.get("size", 18)}px">{text}</div>')
+    for name in canvas['order']:
+        b, stem = boards[name], name.replace('.dc.html', '')
+        title = html.escape(b['title'])
+        tag = ' <span>interactive</span>' if b.get('is_interactive') else ''
+        radius = b.get('radius', 14)
+        items.append(f'''<a class="screen" href="screens/{stem}.html" style="left:{b["x"] - ox}px;top:{b["y"] - oy}px;width:{b["w"]}px;height:{b["h"]}px">
+<span class="cap">{title}{tag}</span>
+<iframe src="screens/{stem}.html" title="{title}" tabindex="-1" style="border-radius:{radius}px"></iframe></a>''')
     return f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="robots" content="noindex">
-<title>The Palm App · design</title>
+<title>{html.escape(canvas["title"])} · design</title>
 {FONTS}
 <style>
-:root{{--paper:#E9E4DB;--ink:#1C1B19;--muted:#625B52}}
-body{{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 'Jost',system-ui,sans-serif}}
-header,section{{padding:0 clamp(16px,4vw,48px)}}
-header{{padding-block:48px 8px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start;justify-content:space-between}}
-h1{{margin:0;font:500 clamp(40px,6vw,64px)/1 'Cormorant Garamond',Georgia,serif}}
-header p{{margin:12px 0 0;color:var(--muted);max-width:520px}}
-.note{{max-width:440px;padding:18px 20px;border-radius:14px;background:#F6C77B;font-size:14px}}
-h2{{margin:56px 0 20px;font:500 32px/1.1 'Cormorant Garamond',Georgia,serif}}
-.row{{display:flex;gap:40px;overflow-x:auto;padding-bottom:24px;align-items:flex-start}}
-.screen{{margin:0;flex:0 0 390px}}
-.screen.wide{{flex:1 1 100%;min-width:min(1440px,100%)}}
-figcaption{{margin-bottom:10px;font-size:14px}}
-figcaption a{{color:var(--ink);text-underline-offset:3px}}
-figcaption span{{margin-left:6px;padding:2px 8px;border-radius:10px;background:var(--ink);color:#F3EFE8;font-size:11px;letter-spacing:.06em;text-transform:uppercase}}
-iframe{{display:block;width:390px;border:0;border-radius:44px;background:#F3EFE8;box-shadow:0 10px 40px rgba(28,27,25,.14)}}
-.wide iframe{{width:100%;border-radius:14px}}
-footer{{padding:40px clamp(16px,4vw,48px) 60px;color:var(--muted);font-size:13px}}
+:root{{--paper:#E9E4DB;--ink:#1C1B19;--muted:#625B52;--glass:rgba(251,249,245,.94)}}
+html,body{{height:100%;margin:0;overflow:hidden}}
+body{{background:var(--paper);color:var(--ink);font:15px/1.5 'Jost',system-ui,sans-serif}}
+#vp{{position:fixed;inset:0;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}}
+#vp.drag{{cursor:grabbing}}
+#stage{{position:absolute;left:0;top:0;width:{width}px;height:{height}px;transform-origin:0 0}}
+.title{{position:absolute;margin:0;font:500 96px/1 'Cormorant Garamond',Georgia,serif;white-space:nowrap}}
+.note{{position:absolute;box-sizing:border-box;padding:28px 30px;border-radius:18px;background:#F6C77B;line-height:1.45}}
+.screen{{position:absolute;display:block;color:var(--ink);text-decoration:none}}
+.screen iframe{{display:block;width:100%;height:100%;border:0;background:#F3EFE8;pointer-events:none;box-shadow:0 18px 60px rgba(28,27,25,.16)}}
+.screen:hover iframe,.screen:focus-visible iframe{{box-shadow:0 0 0 4px var(--ink),0 18px 60px rgba(28,27,25,.2)}}
+.cap{{position:absolute;left:0;bottom:100%;margin-bottom:14px;font-size:22px;white-space:nowrap}}
+.cap span{{margin-left:8px;padding:3px 10px;border-radius:12px;background:var(--ink);color:#F3EFE8;font-size:14px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}}
+.bar,.zoom{{position:fixed;z-index:2;background:var(--glass);border:1px solid #DDD6CB;border-radius:16px;box-shadow:0 6px 24px rgba(28,27,25,.1)}}
+.bar{{top:calc(16px + env(safe-area-inset-top,0px));left:16px;max-width:calc(100% - 32px);box-sizing:border-box;padding:10px 16px}}
+.bar h1{{margin:0;font:500 26px/1.1 'Cormorant Garamond',Georgia,serif}}
+.bar p{{margin:2px 0 0;font-size:13px;color:var(--muted)}}
+.zoom{{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;padding:4px}}
+.zoom button{{min-width:44px;height:44px;border:0;border-radius:12px;background:transparent;font:500 18px 'Jost',system-ui,sans-serif;color:var(--ink);cursor:pointer}}
+.zoom button:hover{{background:#EDE6DA}}
+.zoom output{{min-width:52px;text-align:center;font-size:13px;color:var(--muted)}}
+.zoom .fit{{font-size:14px;padding:0 12px}}
 </style>
 </head>
 <body>
-<header>
-<div><h1>{html.escape(canvas["title"])}</h1>
-<p>App design for The Palm by Citystake, prepared by Mizan Qist. Every screen is live: tap through the links, and try the interactive ones.</p></div>
-<div class="note">{note}</div>
-</header>
-{"".join(sections)}
-<footer>Design only. Not the finished app.</footer>
+<header class="bar"><h1>{html.escape(canvas["title"])}</h1><p>Drag to move · pinch or Ctrl + scroll to zoom · click a screen to open it</p></header>
+<div id="vp"><div id="stage">
+{"".join(items)}
+</div></div>
+<div class="zoom" role="group" aria-label="Zoom">
+<button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+<output id="pct" aria-live="polite">100%</output>
+<button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+<button type="button" data-zoom="fit" class="fit">Fit</button>
+</div>
+<script src="board.js"></script>
 </body>
 </html>
 '''

@@ -2,79 +2,74 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="robots" content="noindex">
 <title>The Palm App · design</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
-:root{--paper:#E9E4DB;--ink:#1C1B19;--muted:#625B52}
-body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 'Jost',system-ui,sans-serif}
-header,section{padding:0 clamp(16px,4vw,48px)}
-header{padding-block:48px 8px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start;justify-content:space-between}
-h1{margin:0;font:500 clamp(40px,6vw,64px)/1 'Cormorant Garamond',Georgia,serif}
-header p{margin:12px 0 0;color:var(--muted);max-width:520px}
-.note{max-width:440px;padding:18px 20px;border-radius:14px;background:#F6C77B;font-size:14px}
-h2{margin:56px 0 20px;font:500 32px/1.1 'Cormorant Garamond',Georgia,serif}
-.row{display:flex;gap:40px;overflow-x:auto;padding-bottom:24px;align-items:flex-start}
-.screen{margin:0;flex:0 0 390px}
-.screen.wide{flex:1 1 100%;min-width:min(1440px,100%)}
-figcaption{margin-bottom:10px;font-size:14px}
-figcaption a{color:var(--ink);text-underline-offset:3px}
-figcaption span{margin-left:6px;padding:2px 8px;border-radius:10px;background:var(--ink);color:#F3EFE8;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-iframe{display:block;width:390px;border:0;border-radius:44px;background:#F3EFE8;box-shadow:0 10px 40px rgba(28,27,25,.14)}
-.wide iframe{width:100%;border-radius:14px}
-footer{padding:40px clamp(16px,4vw,48px) 60px;color:var(--muted);font-size:13px}
+:root{--paper:#E9E4DB;--ink:#1C1B19;--muted:#625B52;--glass:rgba(251,249,245,.94)}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--paper);color:var(--ink);font:15px/1.5 'Jost',system-ui,sans-serif}
+#vp{position:fixed;inset:0;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#vp.drag{cursor:grabbing}
+#stage{position:absolute;left:0;top:0;width:4870px;height:4810px;transform-origin:0 0}
+.title{position:absolute;margin:0;font:500 96px/1 'Cormorant Garamond',Georgia,serif;white-space:nowrap}
+.note{position:absolute;box-sizing:border-box;padding:28px 30px;border-radius:18px;background:#F6C77B;line-height:1.45}
+.screen{position:absolute;display:block;color:var(--ink);text-decoration:none}
+.screen iframe{display:block;width:100%;height:100%;border:0;background:#F3EFE8;pointer-events:none;box-shadow:0 18px 60px rgba(28,27,25,.16)}
+.screen:hover iframe,.screen:focus-visible iframe{box-shadow:0 0 0 4px var(--ink),0 18px 60px rgba(28,27,25,.2)}
+.cap{position:absolute;left:0;bottom:100%;margin-bottom:14px;font-size:22px;white-space:nowrap}
+.cap span{margin-left:8px;padding:3px 10px;border-radius:12px;background:var(--ink);color:#F3EFE8;font-size:14px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.bar,.zoom{position:fixed;z-index:2;background:var(--glass);border:1px solid #DDD6CB;border-radius:16px;box-shadow:0 6px 24px rgba(28,27,25,.1)}
+.bar{top:calc(16px + env(safe-area-inset-top,0px));left:16px;max-width:calc(100% - 32px);box-sizing:border-box;padding:10px 16px}
+.bar h1{margin:0;font:500 26px/1.1 'Cormorant Garamond',Georgia,serif}
+.bar p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.zoom{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;padding:4px}
+.zoom button{min-width:44px;height:44px;border:0;border-radius:12px;background:transparent;font:500 18px 'Jost',system-ui,sans-serif;color:var(--ink);cursor:pointer}
+.zoom button:hover{background:#EDE6DA}
+.zoom output{min-width:52px;text-align:center;font-size:13px;color:var(--muted)}
+.zoom .fit{font-size:14px;padding:0 12px}
 </style>
 </head>
 <body>
-<header>
-<div><h1>The Palm App</h1>
-<p>App design for The Palm by Citystake, prepared by Mizan Qist. Every screen is live: tap through the links, and try the interactive ones.</p></div>
-<div class="note">PLACEHOLDERS, to confirm with the client:<br><br>• Apartment types and how many of each (shown: one-, two- and three-bedroom, 12 units)<br>• Nightly rates (₦120k / ₦200k / ₦300k are examples)<br>• Refundable caution deposit (₦50,000 shown)<br>• Street address and area<br>• Check-in 2 pm / check-out 12 noon<br>• Amenities beyond what the photos show (Wi-Fi, power, parking)<br>• Bank name and account for transfers<br>• House rules and cancellation policy<br><br>Interior photos are placeholder renders until the client&#x27;s own photos are chosen. Building, pool, terrace and gate photos are the client&#x27;s.</div>
-</header>
-<section><h2>Find and reserve an apartment</h2><div class="row"><figure class="screen">
-<figcaption><a href="screens/Main.html">01 Welcome</a></figcaption>
-<iframe src="screens/Main.html" title="01 Welcome" loading="lazy" style="height:844px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Verify.html">02 Sign in</a></figcaption>
-<iframe src="screens/Verify.html" title="02 Sign in" loading="lazy" style="height:844px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Home.html">03 Home</a></figcaption>
-<iframe src="screens/Home.html" title="03 Home" loading="lazy" style="height:1230px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Apartments.html">04 Apartments</a> <span>interactive</span></figcaption>
-<iframe src="screens/Apartments.html" title="04 Apartments" loading="lazy" style="height:1180px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Apartment.html">05 Apartment</a></figcaption>
-<iframe src="screens/Apartment.html" title="05 Apartment" loading="lazy" style="height:1600px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Dates.html">06 Choose dates</a> <span>interactive</span></figcaption>
-<iframe src="screens/Dates.html" title="06 Choose dates" loading="lazy" style="height:844px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Review.html">07 Review and guest details</a></figcaption>
-<iframe src="screens/Review.html" title="07 Review and guest details" loading="lazy" style="height:1160px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Pay.html">08 Payment</a> <span>interactive</span></figcaption>
-<iframe src="screens/Pay.html" title="08 Payment" loading="lazy" style="height:960px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Confirmed.html">09 Reserved</a></figcaption>
-<iframe src="screens/Confirmed.html" title="09 Reserved" loading="lazy" style="height:844px"></iframe>
-</figure></div></section><section><h2>During the stay</h2><div class="row"><figure class="screen">
-<figcaption><a href="screens/Trips.html">10 My stays</a></figcaption>
-<iframe src="screens/Trips.html" title="10 My stays" loading="lazy" style="height:844px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Stay.html">11 During the stay</a></figcaption>
-<iframe src="screens/Stay.html" title="11 During the stay" loading="lazy" style="height:1000px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Chat.html">12 Front desk chat</a></figcaption>
-<iframe src="screens/Chat.html" title="12 Front desk chat" loading="lazy" style="height:844px"></iframe>
-</figure><figure class="screen">
-<figcaption><a href="screens/Me.html">13 Profile</a></figcaption>
-<iframe src="screens/Me.html" title="13 Profile" loading="lazy" style="height:900px"></iframe>
-</figure></div></section><section><h2>Front desk (the owner&#x27;s side)</h2><div class="row"><figure class="screen wide">
-<figcaption><a href="screens/Desk.html">14 Front desk dashboard (owner and staff)</a></figcaption>
-<iframe src="screens/Desk.html" title="14 Front desk dashboard (owner and staff)" loading="lazy" style="height:980px"></iframe>
-</figure></div></section>
-<footer>Design only. Not the finished app.</footer>
+<header class="bar"><h1>The Palm App</h1><p>Drag to move · pinch or Ctrl + scroll to zoom · click a screen to open it</p></header>
+<div id="vp"><div id="stage">
+<div class="note" style="left:80px;top:350px;width:440px;font-size:24px">PLACEHOLDERS, to confirm with the client:<br><br>• Apartment types and how many of each (shown: one-, two- and three-bedroom, 12 units)<br>• Nightly rates (₦120k / ₦200k / ₦300k are examples)<br>• Refundable caution deposit (₦50,000 shown)<br>• Street address and area<br>• Check-in 2 pm / check-out 12 noon<br>• Amenities beyond what the photos show (Wi-Fi, power, parking)<br>• Bank name and account for transfers<br>• House rules and cancellation policy<br><br>Interior photos are placeholder renders until the client&#x27;s own photos are chosen. Building, pool, terrace and gate photos are the client&#x27;s.</div><h2 class="title" style="left:640px;top:80px">Find and reserve an apartment</h2><h2 class="title" style="left:640px;top:2080px">During the stay</h2><h2 class="title" style="left:640px;top:3480px">Front desk (the owner&#x27;s side)</h2><a class="screen" href="screens/Main.html" style="left:640px;top:350px;width:390px;height:844px">
+<span class="cap">01 Welcome</span>
+<iframe src="screens/Main.html" title="01 Welcome" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Verify.html" style="left:1110px;top:350px;width:390px;height:844px">
+<span class="cap">02 Sign in</span>
+<iframe src="screens/Verify.html" title="02 Sign in" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Home.html" style="left:1580px;top:350px;width:390px;height:1230px">
+<span class="cap">03 Home</span>
+<iframe src="screens/Home.html" title="03 Home" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Apartments.html" style="left:2050px;top:350px;width:390px;height:1180px">
+<span class="cap">04 Apartments <span>interactive</span></span>
+<iframe src="screens/Apartments.html" title="04 Apartments" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Apartment.html" style="left:2520px;top:350px;width:390px;height:1600px">
+<span class="cap">05 Apartment</span>
+<iframe src="screens/Apartment.html" title="05 Apartment" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Dates.html" style="left:2990px;top:350px;width:390px;height:844px">
+<span class="cap">06 Choose dates <span>interactive</span></span>
+<iframe src="screens/Dates.html" title="06 Choose dates" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Review.html" style="left:3460px;top:350px;width:390px;height:1160px">
+<span class="cap">07 Review and guest details</span>
+<iframe src="screens/Review.html" title="07 Review and guest details" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Pay.html" style="left:3930px;top:350px;width:390px;height:960px">
+<span class="cap">08 Payment <span>interactive</span></span>
+<iframe src="screens/Pay.html" title="08 Payment" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Confirmed.html" style="left:4400px;top:350px;width:390px;height:844px">
+<span class="cap">09 Reserved</span>
+<iframe src="screens/Confirmed.html" title="09 Reserved" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Trips.html" style="left:640px;top:2350px;width:390px;height:844px">
+<span class="cap">10 My stays</span>
+<iframe src="screens/Trips.html" title="10 My stays" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Stay.html" style="left:1110px;top:2350px;width:390px;height:1000px">
+<span class="cap">11 During the stay</span>
+<iframe src="screens/Stay.html" title="11 During the stay" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Chat.html" style="left:1580px;top:2350px;width:390px;height:844px">
+<span class="cap">12 Front desk chat</span>
+<iframe src="screens/Chat.html" title="12 Front desk chat" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Me.html" style="left:2050px;top:2350px;width:390px;height:900px">
+<span class="cap">13 Profile</span>
+<iframe src="screens/Me.html" title="13 Profile" tabindex="-1" style="border-radius:44px"></iframe></a><a class="screen" href="screens/Desk.html" style="left:640px;top:3750px;width:1440px;height:980px">
+<span class="cap">14 Front desk dashboard (owner and staff)</span>
+<iframe src="screens/Desk.html" title="14 Front desk dashboard (owner and staff)" tabindex="-1" style="border-radius:14px"></iframe></a>
+</div></div>
+<div class="zoom" role="group" aria-label="Zoom">
+<button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+<output id="pct" aria-live="polite">100%</output>
+<button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+<button type="button" data-zoom="fit" class="fit">Fit</button>
+</div>
+<script src="board.js"></script>
 </body>
 </html>
