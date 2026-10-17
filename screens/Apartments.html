@@ -76,9 +76,9 @@ this.state = { beds: 'all' };
 renderVals() {
 const beds = this.state.beds;
 const all = [
-{ beds: '1', name: 'One-Bedroom Suite', img: '../assets/bedroom.jpg', alt: 'One-bedroom suite bedroom', price: '₦120,000', specs: '2 guests · 1 bedroom · 1 bath', total: '₦360,000 total', free: true, badge: '4 free for your dates' },
-{ beds: '2', name: 'Two-Bedroom Apartment', img: '../assets/living.jpg', alt: 'Two-bedroom apartment living room', price: '₦200,000', specs: '4 guests · 2 bedrooms · 2 baths', total: '₦600,000 total', free: true, badge: 'Only 1 left' },
-{ beds: '3', name: 'Three-Bedroom Apartment', img: '../assets/lounge.jpg', alt: 'Three-bedroom apartment living room', price: '₦300,000', specs: '6 guests · 3 bedrooms · 3 baths', total: 'Next free 2 Nov', free: false, badge: 'Booked for these dates' }
+{ beds: '1', name: 'One-Bedroom Suite', img: '../assets/bedroom.webp', alt: 'One-bedroom suite bedroom', price: '₦120,000', specs: '2 guests · 1 bedroom · 1 bath', total: '₦360,000 total', free: true, badge: '4 free for your dates' },
+{ beds: '2', name: 'Two-Bedroom Apartment', img: '../assets/living.webp', alt: 'Two-bedroom apartment living room', price: '₦200,000', specs: '4 guests · 2 bedrooms · 2 baths', total: '₦600,000 total', free: true, badge: 'Only 1 left' },
+{ beds: '3', name: 'Three-Bedroom Apartment', img: '../assets/lounge.webp', alt: 'Three-bedroom apartment living room', price: '₦300,000', specs: '6 guests · 3 bedrooms · 3 baths', total: 'Next free 2 Nov', free: false, badge: 'Booked for these dates' }
 ];
 const units = all.filter((u) => beds === 'all' || u.beds === beds).map((u) => ({ ...u, full: !u.free }));
 const chips = [['all', 'All'], ['1', '1 bed'], ['2', '2 beds'], ['3', '3 beds']].map(([id, label]) => ({

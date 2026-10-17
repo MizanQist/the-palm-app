@@ -9,18 +9,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 BLOBS = {
-    'a4684e793dbc2c669bf848dd51540839': 'logo.jpg',
-    '5ca49668d029ab1b06bfc2d3e438aecc': 'logo-white.jpg',
-    'f10ae0e582d91e9ea3dd83c68fd03161': 'living.jpg',
-    '3574bd388b856f88fa1c81fbb382af52': 'bedroom.jpg',
-    'cafe35534ff57193126590a216732859': 'kitchen.jpg',
-    'f4652383a0a3b8d92384f6088306e4ee': 'dining.jpg',
-    '0029a94c120ad28600ebfb2d7674ee73': 'lounge.jpg',
-    '614b0df907c9df4355697e7462aac7d8': 'bath.jpg',
-    '8291b8af9ddd6f7fe146e2428af538e6': 'building.jpg',
-    '128e751276267409125925527f59c21c': 'pool.jpg',
-    'faecb394e51c542fbfd9ea180ee42d4c': 'terrace.jpg',
-    'af4e738c4f27ef9e5941bbe2d1aaa377': 'sign.jpg',
+    'a4684e793dbc2c669bf848dd51540839': 'logo.webp',
+    '5ca49668d029ab1b06bfc2d3e438aecc': 'logo-white.webp',
+    'f10ae0e582d91e9ea3dd83c68fd03161': 'living.webp',
+    '3574bd388b856f88fa1c81fbb382af52': 'bedroom.webp',
+    'cafe35534ff57193126590a216732859': 'kitchen.webp',
+    'f4652383a0a3b8d92384f6088306e4ee': 'dining.webp',
+    '0029a94c120ad28600ebfb2d7674ee73': 'lounge.webp',
+    '614b0df907c9df4355697e7462aac7d8': 'bath.webp',
+    '8291b8af9ddd6f7fe146e2428af538e6': 'building.webp',
+    '128e751276267409125925527f59c21c': 'pool.webp',
+    'faecb394e51c542fbfd9ea180ee42d4c': 'terrace.webp',
+    'af4e738c4f27ef9e5941bbe2d1aaa377': 'sign.webp',
 }
 FONTS = '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">'
 
